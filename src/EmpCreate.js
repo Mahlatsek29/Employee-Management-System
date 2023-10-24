@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const EmpCreate = () => {
-  const [id] = useState(""); // ID should not be editable by the user
+  const [id] = useState(""); 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ const EmpCreate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if required fields are empty
+    
     if (!name || !surname || !position) {
       setValidation(true);
     } else {
@@ -26,11 +26,11 @@ const EmpCreate = () => {
 
       fetch("http://localhost:8000/employee", {
         method: "POST",
-        headers: { "Content-Type": "application/json" }, // Fixed content-type header
+        headers: { "Content-Type": "application/json" }, 
         body: JSON.stringify(empdata),
       })
         .then((res) => {
-          if (res.status === 201) { // Check for a successful status code
+          if (res.status === 201) { 
             alert("Saved successfully.");
             navigate("/");
           } else {
