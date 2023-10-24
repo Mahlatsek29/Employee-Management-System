@@ -1,14 +1,6 @@
 {
   "employee": [
     {
-      "id": 1,
-      "name": "Ivy",
-      "surname": "North",
-      "email": "ivy@gmail.com",
-      "contacts": "0720553322",
-      "position": "PR"
-    },
-    {
       "name": "Mahlatse",
       "surname": "Serathi",
       "email": "serathikm@gmail.com",
@@ -24,6 +16,15 @@
       "email": "serathikm@gmail.com",
       "contacts": "0877559668",
       "position": "Learner"
+    },
+    {
+      "id": 4,
+      "name": "Jane",
+      "surname": "South",
+      "email": "jane@gmail.com",
+      "contacts": "12356789",
+      "position": "intern",
+      "active": true
     }
   ]
 }

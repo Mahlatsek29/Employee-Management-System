@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const EmpListing = () => {
@@ -8,31 +8,35 @@ const EmpListing = () => {
     const LoadDetail = (id) => {
         navigate("/employee/detail/" + id);
     }
+
     const LoadEdit = (id) => {
         navigate("/employee/edit/" + id);
     }
+
     const Removefunction = (id) => {
         if (window.confirm('Do you want to remove?')) {
             fetch("http://localhost:8000/employee/" + id, {
                 method: "DELETE"
             }).then((res) => {
-                alert('Removed successfully.')
+                alert('Removed successfully.');
                 window.location.reload();
             }).catch((err) => {
-                console.log(err.message)
-            })
+                console.log(err.message);
+            });
         }
     }
 
     useEffect(() => {
-        fetch("http://localhost:8000/employee").then((res) => {
-            return res.json();
-        }).then((resp) => {
-            empdatachange(resp);
-        }).catch((err) => {
-            console.log(err.message);
-        })
-    }, [])
+        fetch("http://localhost:8000/employee")
+            .then((res) => res.json())
+            .then((resp) => {
+                empdatachange(resp);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+
     return (
         <div className="container">
             <div className="card">
@@ -56,9 +60,8 @@ const EmpListing = () => {
                             </tr>
                         </thead>
                         <tbody>
-
                             {empdata &&
-                                empdata.map(item => (
+                                empdata.map((item) => (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
                                         <td>{item.name}</td>
@@ -66,17 +69,29 @@ const EmpListing = () => {
                                         <td>{item.email}</td>
                                         <td>{item.contacts}</td>
                                         <td>{item.position}</td>
-                                        {/* <td>{item.action}</td> */}
-                                        <td><a onClick={() => { LoadEdit(item.id) }} className="btn btn-success">Edit</a>
-                                            <a onClick={() => { Removefunction(item.id) }} className="btn btn-danger">Remove</a>
-                                            <a onClick={() => { LoadDetail(item.id) }} className="btn btn-primary">Details</a>
+                                        <td>
+                                            <button
+                                                onClick={() => LoadEdit(item.id)}
+                                                className="btn btn-success"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                onClick={() => Removefunction(item.id)}
+                                                className="btn btn-danger"
+                                            >
+                                                Remove
+                                            </button>
+                                            <button
+                                                onClick={() => LoadDetail(item.id)}
+                                                className="btn btn-primary"
+                                            >
+                                                Details
+                                            </button>
                                         </td>
                                     </tr>
-                                ))
-                            }
-
+                                ))}
                         </tbody>
-
                     </table>
                 </div>
             </div>
